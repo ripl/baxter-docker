@@ -1,0 +1,6 @@
+[submodule "packages/baxter_interface"]
+	path = packages/baxter_interface
+	url = git@github.com:ripl/baxter_interface.git
+[submodule "packages/ripl_baxter_interface"]
+	path = packages/ripl_baxter_interface
+	url = git@github.com:ripl/ripl_baxter_interface.git

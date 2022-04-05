@@ -9,7 +9,7 @@ ARG MAINTAINER
 # ==> Do not change the code below this line
 ARG BASE_REGISTRY=docker.io
 ARG BASE_ORGANIZATION=ripl
-ARG BASE_REPOSITORY=baxter-common-docker
+ARG BASE_REPOSITORY=libbot2-ros-docker
 ARG BASE_TAG=cpk
 
 # define base image
@@ -65,8 +65,10 @@ COPY ./*.cpk ./*.sh ${PROJECT_PATH}/
 COPY ./packages "${CPK_PROJECT_PATH}/packages"
 
 # build catkin workspace
-RUN catkin build \
-    --workspace ${CPK_CODE_DIR}
+# NOTE: Absolutely no idea why we need to use bash, but it fails with sh.
+# catkin build somehow succeeds with ripl/ros-base:noetic as the base image, with sh.
+# Mysterious...
+RUN bash -c "catkin build --workspace ${CPK_CODE_DIR}"
 
 # install packages dependencies
 RUN cpk-install-packages-dependencies

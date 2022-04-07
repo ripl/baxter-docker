@@ -88,3 +88,15 @@ LABEL \
     cpk.label.project.${ORGANIZATION}.${NAME}.maintainer="${MAINTAINER}"
 # <== Do not change the code above this line
 # <==================================================
+
+# install pinocchio
+RUN echo "deb [arch=amd64] http://robotpkg.openrobots.org/packages/debian/pub $(lsb_release -cs) robotpkg" | sudo tee /etc/apt/sources.list.d/robotpkg.list && \
+    curl http://robotpkg.openrobots.org/packages/debian/robotpkg.key | sudo apt-key add - && \
+    apt update && apt install -qqy robotpkg-py38-pinocchio && apt clean
+
+ENV PATH "/opt/openrobots/bin:$PATH"
+ENV PKG_CONFIG_PATH "/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH"
+ENV LD_LIBRARY_PATH "/opt/openrobots/lib:$LD_LIBRARY_PATH"
+ENV PYTHONPATH "/opt/openrobots/lib/python3.8/site-packages:$PYTHONPATH"
+ENV CMAKE_PREFIX_PATH "/opt/openrobots:$CMAKE_PREFIX_PATH"
+

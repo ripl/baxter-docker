@@ -1,7 +1,7 @@
 {
-    "description": "Baxter Base CPK project",
-    "maintainer": "RIPL",
-    "name": "baxter-base-docker",
+    "description": "Docker containerization for developing Baxter apps.",
+    "maintainer": "Shengjie Lin <slin@ttic.edu>",
+    "name": "baxter-docker",
     "organization": "ripl",
     "schema": "1.0",
     "template": null,

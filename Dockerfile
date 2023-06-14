@@ -9,8 +9,8 @@ ARG MAINTAINER
 # ==> Do not change the code below this line
 ARG BASE_REGISTRY=docker.io
 ARG BASE_ORGANIZATION=ripl
-ARG BASE_REPOSITORY=libbot2-ros-docker
-ARG BASE_TAG=cpk
+ARG BASE_REPOSITORY=ros-docker
+ARG BASE_TAG=main
 
 # define base image
 FROM ${BASE_REGISTRY}/${BASE_ORGANIZATION}/${BASE_REPOSITORY}:${BASE_TAG}-${ARCH} as BASE
@@ -65,10 +65,8 @@ COPY ./*.cpk ./*.sh ${PROJECT_PATH}/
 COPY ./packages "${CPK_PROJECT_PATH}/packages"
 
 # build catkin workspace
-# NOTE: Absolutely no idea why we need to use bash, but it fails with sh.
-# catkin build somehow succeeds with ripl/ros-base:noetic as the base image, with sh.
-# Mysterious...
-RUN bash -c "catkin build --workspace ${CPK_CODE_DIR}"
+RUN catkin build \
+    --workspace ${CPK_CODE_DIR}
 
 # install packages dependencies
 RUN cpk-install-packages-dependencies
@@ -88,15 +86,3 @@ LABEL \
     cpk.label.project.${ORGANIZATION}.${NAME}.maintainer="${MAINTAINER}"
 # <== Do not change the code above this line
 # <==================================================
-
-# install pinocchio
-RUN echo "deb [arch=amd64] http://robotpkg.openrobots.org/packages/debian/pub $(lsb_release -cs) robotpkg" | sudo tee /etc/apt/sources.list.d/robotpkg.list && \
-    curl http://robotpkg.openrobots.org/packages/debian/robotpkg.key | sudo apt-key add - && \
-    apt update && apt install -qqy robotpkg-py38-pinocchio && apt clean
-
-ENV PATH "/opt/openrobots/bin:$PATH"
-ENV PKG_CONFIG_PATH "/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH"
-ENV LD_LIBRARY_PATH "/opt/openrobots/lib:$LD_LIBRARY_PATH"
-ENV PYTHONPATH "/opt/openrobots/lib/python3.8/site-packages:$PYTHONPATH"
-ENV CMAKE_PREFIX_PATH "/opt/openrobots:$CMAKE_PREFIX_PATH"
-

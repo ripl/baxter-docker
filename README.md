@@ -9,9 +9,9 @@ Docker containerization for developing Baxter apps. This image is based on `ripl
 
 ## Run
 
-    cpk run -c bash -X --net host -- -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+    cpk run -c bash -X --net host
 
-## Usage
+## Usage Examples
 
     # Enable/disable Baxter
     rosrun baxter_tools enable_robot.py

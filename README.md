@@ -18,3 +18,6 @@ Docker containerization for developing Baxter apps. This image is based on `ripl
 
     # Tuck/untuck Baxter's arms
     rosrun baxter_tools tuck_arms.py
+
+    # Enable/disable Baxter's head sonars
+    rostopic pub -1 /robot/sonar/head_sonar/set_sonars_enabled std_msgs/UInt16 4095/0

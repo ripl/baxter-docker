@@ -5,14 +5,30 @@ Docker containerization for developing Baxter apps. This image is based on [`rip
 ## Build
 
 ```bash
+# use local architecture
+ARCH=$(arch)
+if [ ${ARCH} = x86_64 ]; then
+    ARCH=amd64
+elif [ ${ARCH} = aarch64 ]; then
+    ARCH=arm64v8
+else
+    echo Unsupported architecture: ${ARCH}
+fi
+# use amd64
+ARCH=amd64
+# use arm64v8
+ARCH=arm64v8
+```
+
+```bash
 git clone --recurse-submodules git@github.com:ripl/baxter-docker.git && cd baxter-docker/
-cpk build
+cpk build -a ${ARCH} --push
 ```
 
 ## Run
 
 ```bash
-cpk run -c bash -X --net host
+cpk run -a ${ARCH} -c bash -X --net host
 ```
 
 ## Usage Examples

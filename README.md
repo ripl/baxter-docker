@@ -2,7 +2,7 @@
 
 Docker containerization for developing Baxter apps. This image is based on [`ripl/ros-docker:main`](https://github.com/ripl/ros-docker), and with packages for the Baxter robot.
 
-## Build
+## Set Architecture
 
 ```bash
 # use local architecture
@@ -20,9 +20,11 @@ ARCH=amd64
 ARCH=arm64v8
 ```
 
+## Build
+
 ```bash
 git clone --recurse-submodules git@github.com:ripl/baxter-docker.git && cd baxter-docker/
-cpk build -a ${ARCH} --push
+cpk build -a ${ARCH}
 ```
 
 ## Run

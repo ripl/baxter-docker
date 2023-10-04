@@ -5,7 +5,7 @@ Docker containerization for developing Baxter apps. This image is based on [`rip
 ## Build
 
 ```bash
-git clone --recurse-submodules git@github.com:ripl/baxter-docker.git && cd baxter-docker/
+git clone --recurse-submodules https://github.com/ripl/baxter-docker.git && cd baxter-docker/
 cpk build
 ```
 

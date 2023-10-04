@@ -1,9 +1,9 @@
 [submodule "packages/baxter_common"]
 	path = packages/baxter_common
-	url = git@github.com:RethinkRobotics/baxter_common.git
+	url = https://github.com/RethinkRobotics/baxter_common.git
 [submodule "packages/baxter_interface"]
 	path = packages/baxter_interface
-	url = git@github.com:ripl/baxter_interface.git
+	url = https://github.com/ripl/baxter_interface.git
 [submodule "packages/baxter_tools"]
 	path = packages/baxter_tools
-	url = git@github.com:ripl/baxter_tools.git
+	url = https://github.com/ripl/baxter_tools.git
